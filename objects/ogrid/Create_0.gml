@@ -8,7 +8,6 @@ for (var xx = 0 ; xx < width ;	xx++) {
 	//GetWorldPosition 
 	var xWorldPos = xx * tileSize;
 	var yWorldPos = yy * tileSize;
-
 	
 	var tile = instance_create_layer(
 		xWorldPos,
@@ -19,10 +18,7 @@ for (var xx = 0 ; xx < width ;	xx++) {
 		gridY : yy}
 	);	
 	
-	tiles[xx][yy] = tile;
-	DM(tiles[xx][yy]);
-	
-	
+	tiles[xx][yy] = tile;	
 }}
 
 
@@ -33,22 +29,13 @@ Loop = function(meth) {
 	}}
 }
 
-GetTileMouse = function(){
-	var mouse_free_grid_x = floor(mouse_x / tileSize);
-	var mouse_free_grid_y = floor(mouse_y / tileSize);
-	//Empêche les coordonnées de sortir de la grille (on pourra pas avoir grid_x = 12 si on a que 8 collones)
-	var mouse_grid_x = clamp(mouse_free_grid_x, 0, width-1);
-	var mouse_grid_y = clamp(mouse_free_grid_y, 0, height-1);
-	
-	return GetTile(mouse_grid_x, mouse_grid_y);
-}
-
 GetTile = function(xx, yy) {
 	return tiles[xx][yy];
 }
 
-SetTileText = function(tile, text){
+ChangeTile = function(text, color, tile) {
 	tile.text = text;
+	tile.image_blend = color;
 }
 
 DestroySelf = function() {
@@ -56,8 +43,22 @@ DestroySelf = function() {
 		instance_destroy(tiles[xx][yy]);
 	});
 	instance_destroy();
+	oGameHandler.grid = noone;
 }
 
+MoveTiles = function() {
+	Loop(function(xx, yy) {
+		var dirHorMove	= keyboard_check(ord("D")) - keyboard_check(ord("Q"))
+		var hSpeed		= dirHorMove * 5;
+		tiles[xx][yy].x += hSpeed;
+	});
+	
+	Loop(function(xx, yy) {
+		var dirVerMove	= keyboard_check(ord("S")) - keyboard_check(ord("Z"))
+		var vSpeed		= dirVerMove * 5;
+		tiles[xx][yy].y += vSpeed;
+	});
+}
 
 //DisplayDebug = function() {
 	
@@ -72,4 +73,15 @@ DestroySelf = function() {
 //	draw_text(xx_d, yy_d + shift_y * i++, string(mouse_free_grid_y));
 //	draw_text(xx_d, yy_d + shift_y * i++, string(mouse_grid_x));
 //	draw_text(xx_d, yy_d + shift_y * i++, string(mouse_grid_y));
+//}
+
+
+//GetTileMouse = function(){
+//	var mouse_free_grid_x = floor(mouse_x / tileSize);
+//	var mouse_free_grid_y = floor(mouse_y / tileSize);
+//	//Empêche les coordonnées de sortir de la grille (on pourra pas avoir grid_x = 12 si on a que 8 collones)
+//	var mouse_grid_x = clamp(mouse_free_grid_x, 0, width-1);
+//	var mouse_grid_y = clamp(mouse_free_grid_y, 0, height-1);
+//	
+//	return GetTile(mouse_grid_x, mouse_grid_y);
 //}

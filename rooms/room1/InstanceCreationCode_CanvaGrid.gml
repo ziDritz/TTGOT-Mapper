@@ -12,15 +12,9 @@ OnEnterKey = function() {
 	var oInputXBox = arInputBox[eGridInputBox.X];
 	var oInputYBox = arInputBox[eGridInputBox.Y];
 	
-	//DM(oInputXBox.str);
-	//DM(oInputYBox.str);
-	
 	if (oInputXBox.str != "" && oInputYBox.str != "") {
-		if (instance_exists(oGrid))		{
-			instance_destroy(oTile);
-			instance_destroy(oGrid);
-			oGameHandler.grid = noone;
-		}
+
+		if (oGameHandler.grid != noone)		oGameHandler.grid.DestroySelf();
 			
 		var newWidth	= int64(oInputXBox.str);
 		var newHeight	= int64(oInputYBox.str);

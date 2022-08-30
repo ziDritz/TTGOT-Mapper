@@ -1,0 +1,1 @@
+with (oTest2) {a = 2};		

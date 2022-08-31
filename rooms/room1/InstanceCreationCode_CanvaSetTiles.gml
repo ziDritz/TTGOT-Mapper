@@ -9,7 +9,7 @@ enum eTilesInputBox {
 	color	
 }
 
-OnEnterKey = function (){
+Action = function (){
 
 	var text	= arInputBox[eTilesInputBox.text].str;
 	if (arInputBox[eTilesInputBox.count].str != "") {
@@ -29,14 +29,10 @@ OnEnterKey = function (){
 		
 		var xx		= irandom(grid.width - 1);
 		var yy		= irandom(grid.height - 1);
-		var t		= grid.GetTile(xx, yy);	
+		var t		= grid.tiles[xx][yy];
 		
-		if (t.CheckEmpty() == true)	grid.ChangeTile(text, color, t);
+		if (t.CheckEmpty() == true)	t.ChangeTile(text, color, t);
 		else 						i--;
 	}
-	
-	oInputBox.str = "";
-	oInputBox.isActive = false;
-	
 }
 

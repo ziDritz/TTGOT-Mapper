@@ -8,7 +8,7 @@ enum eGridInputBox {
 	Y
 }
 
-OnEnterKey = function() {
+Action = function() {
 	var oInputXBox = arInputBox[eGridInputBox.X];
 	var oInputYBox = arInputBox[eGridInputBox.Y];
 	
@@ -20,9 +20,5 @@ OnEnterKey = function() {
 		var newHeight	= int64(oInputYBox.str);
 
 		oGameHandler.grid = NewGrid(newWidth, newHeight);
-		
-		oInputXBox.str = "";
-		oInputYBox.str = "";
-		oInputBox.isActive = false;
 	}
 }

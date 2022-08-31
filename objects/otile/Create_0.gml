@@ -14,3 +14,7 @@ CheckEmpty = function() {
 	else										return false;
 }
 
+Reset = function() {
+	text = "";
+	image_blend = c_white;
+}

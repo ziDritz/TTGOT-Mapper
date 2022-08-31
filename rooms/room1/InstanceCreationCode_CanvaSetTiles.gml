@@ -14,6 +14,8 @@ OnEnterKey = function (){
 	var text	= arInputBox[eTilesInputBox.text].str;
 	if (arInputBox[eTilesInputBox.count].str != "") {
 	var count	= int64(arInputBox[eTilesInputBox.count].str);}
+	else {
+	var count	= 0;}
 	var color	= StringToColor(arInputBox[eTilesInputBox.color].str);
 
 	var grid	= oGameHandler.grid;

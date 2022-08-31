@@ -1,16 +1,20 @@
 tileSize = 64;
+isActive = true;
 
 tiles[width - 1][height - 1] = 0;
 
+// Taille de la fenêtre / 2 - taille de la grid / 2
+x = (window_get_width() / 2) - (width * tileSize / 2);
+y = (window_get_height() / 2) - (height * tileSize / 2);
+
 for (var yy = 0 ; yy < height;	yy++) {
 for (var xx = 0 ; xx < width ;	xx++) {
-	
-	//GetWorldPosition 
-	// Taille de la fenêtre / 2 - taille de la grid / 2 + position gridX ou gridY de la tile * la taille du sprite
-	var xWorldPos = (window_get_width() / 2) - (width * tileSize / 2) + xx * tileSize;
-	var yWorldPos = (window_get_height() / 2) - (height * tileSize / 2) + yy * tileSize ;
-	
 
+	//GetWorldPosition 
+	//pos grid + position gridX ou gridY de la tile * la taille du sprite
+	var xWorldPos = x + xx * tileSize;
+	var yWorldPos = y + yy * tileSize ;
+	
 	var tile = instance_create_layer(
 		xWorldPos,
 		yWorldPos,
@@ -23,6 +27,19 @@ for (var xx = 0 ; xx < width ;	xx++) {
 	tiles[xx][yy] = tile;	
 }}
 
+Awake = function() {
+	isActive = true;
+}
+
+Sleep = function() {
+	isActive = false;
+}
+
+Reset = function() {
+	Loop(function(xx, yy) {
+		tiles[xx][yy].Reset();
+	});
+}
 
 Loop = function(meth) {
 	for (var yy = height - 1 ; yy >= 0;	yy--) {
@@ -31,13 +48,44 @@ Loop = function(meth) {
 	}}
 }
 
-GetTile = function(xx, yy) {
-	return tiles[xx][yy];
+UpdateTilesPosition = function() {
+	Loop(function(xx, yy) {
+		tiles[xx][yy].UpdatePosition(xx, yy);
+	});
 }
 
-ChangeTile = function(text, color, tile) {
-	tile.text = text;
-	tile.image_blend = color;
+Scale = function(fraction) {
+	tileSize = tileSize * fraction;
+	UpdateTilesPosition();
+	for (var yy = 0 ; yy < height;	yy++) {
+	for (var xx = 0 ; xx < width ;	xx++) {
+		tiles[xx][yy].image_xscale = tiles[xx][yy].image_xscale * fraction;
+		tiles[xx][yy].image_yscale = tiles[xx][yy].image_yscale * fraction;
+		tiles[xx][yy].xtscale = tiles[xx][yy].xtscale * fraction;
+		tiles[xx][yy].ytscale = tiles[xx][yy].ytscale * fraction;
+	}}
+}
+//Fisher-Yates (aka Knuth) Shuffle
+Shuffle = function() {
+	var rY, rX, buffer;
+
+	// While there remain elements to shuffle.
+	for (var yy = height-1; yy >= 0; yy--) {
+	for (var xx = width-1; xx >= 0; xx--) {
+
+		// Pick a remaining element.
+		rX = irandom(xx);
+		rY = irandom(yy);
+		
+		// And swap it with the current element.
+		buffer = tiles[xx][yy];
+		tiles[xx][yy] = tiles[rX][rY];
+		tiles[rX][rY] = buffer;
+
+	}
+	}
+	
+	UpdateTilesPosition();
 }
 
 DestroySelf = function() {
@@ -48,19 +96,7 @@ DestroySelf = function() {
 	oGameHandler.grid = noone;
 }
 
-MoveTiles = function() {
-	Loop(function(xx, yy) {
-		var dirHorMove	= keyboard_check(ord("D")) - keyboard_check(ord("Q"))
-		var hSpeed		= dirHorMove * 5;
-		tiles[xx][yy].x += hSpeed;
-	});
-	
-	Loop(function(xx, yy) {
-		var dirVerMove	= keyboard_check(ord("S")) - keyboard_check(ord("Z"))
-		var vSpeed		= dirVerMove * 5;
-		tiles[xx][yy].y += vSpeed;
-	});
-}
+
 
 //DisplayDebug = function() {
 	
@@ -75,15 +111,4 @@ MoveTiles = function() {
 //	draw_text(xx_d, yy_d + shift_y * i++, string(mouse_free_grid_y));
 //	draw_text(xx_d, yy_d + shift_y * i++, string(mouse_grid_x));
 //	draw_text(xx_d, yy_d + shift_y * i++, string(mouse_grid_y));
-//}
-
-
-//GetTileMouse = function(){
-//	var mouse_free_grid_x = floor(mouse_x / tileSize);
-//	var mouse_free_grid_y = floor(mouse_y / tileSize);
-//	//Empêche les coordonnées de sortir de la grille (on pourra pas avoir grid_x = 12 si on a que 8 collones)
-//	var mouse_grid_x = clamp(mouse_free_grid_x, 0, width-1);
-//	var mouse_grid_y = clamp(mouse_free_grid_y, 0, height-1);
-//	
-//	return GetTile(mouse_grid_x, mouse_grid_y);
 //}

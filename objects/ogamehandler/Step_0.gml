@@ -12,9 +12,19 @@ if (mouse_check_button_pressed(mb_left)) {
 	}
 	else {
 		oInputBox.isActive = false;
-		oCanva.isActive = false;
+		oCanva.DeactivateSelf();
+		// Pour des raisons que j'ignore le Canva "Change Tiles"
+		// De ne désactive pas avec oCanva.DeactivateSelf();
+		arCanvas[eCanva.ChangeTiles].DeactivateSelf();
 	}
 	ds_list_destroy(list);
+}
+
+if (mouse_check_button_pressed(mb_right)) {
+	if position_meeting(window_mouse_get_x(), window_mouse_get_y(), oTile) {
+		var t = instance_position(window_mouse_get_x(), window_mouse_get_y(), oTile);
+		t.Reset();
+	};
 }
 
 

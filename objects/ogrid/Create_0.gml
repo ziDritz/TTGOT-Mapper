@@ -6,9 +6,11 @@ for (var yy = 0 ; yy < height;	yy++) {
 for (var xx = 0 ; xx < width ;	xx++) {
 	
 	//GetWorldPosition 
-	var xWorldPos = xx * tileSize;
-	var yWorldPos = yy * tileSize;
+	// Taille de la fenêtre / 2 - taille de la grid / 2 + position gridX ou gridY de la tile * la taille du sprite
+	var xWorldPos = (window_get_width() / 2) - (width * tileSize / 2) + xx * tileSize;
+	var yWorldPos = (window_get_height() / 2) - (height * tileSize / 2) + yy * tileSize ;
 	
+
 	var tile = instance_create_layer(
 		xWorldPos,
 		yWorldPos,

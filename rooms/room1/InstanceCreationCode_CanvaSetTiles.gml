@@ -1,6 +1,8 @@
 title = "Change Tiles"
 
-oGameHandler.arCanvas[eCanva.ChangeTiles] = self;
+parent				= oGUIHandler;
+i					= eCanva.ChangeTiles;
+parent.arCanvas[i]	= self;
 arInputBox = array_create(3);
 
 enum eTilesInputBox {

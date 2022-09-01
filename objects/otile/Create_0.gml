@@ -1,6 +1,6 @@
 text = "";
-xtscale = 0.33; 
-ytscale = 0.33;
+xtscale = 0.5; 
+ytscale = 0.5;
 spriteWidthInit = sprite_width;
 
 image_blend = c_white;

@@ -8,6 +8,7 @@ Awake = function () {
 	isActive = true;
 	keyboard_string = "";
 	image_blend = c_white;
+	parent.iSelector = i;
 }
 
 Sleep = function() {

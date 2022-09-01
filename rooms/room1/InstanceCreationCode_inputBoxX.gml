@@ -1,3 +1,6 @@
 title = "x";
 isOnlyDigit = true;
-oGameHandler.arCanvas[eCanva.NewGrid].arInputBox[eGridInputBox.X] = self;
+
+parent = oGUIHandler.arCanvas[eCanva.NewGrid];
+i = eGridInputBox.X;
+parent.arInputBox[i] = self;

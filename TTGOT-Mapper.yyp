@@ -11,7 +11,7 @@
     {"id":{"name":"Grid","path":"scripts/Grid/Grid.yy",},"order":1,},
     {"id":{"name":"oTest","path":"objects/oTest/oTest.yy",},"order":1,},
     {"id":{"name":"oGrid","path":"objects/oGrid/oGrid.yy",},"order":2,},
-    {"id":{"name":"oPubSubManager","path":"objects/oPubSubManager/oPubSubManager.yy",},"order":6,},
+    {"id":{"name":"oGUIHandler","path":"objects/oGUIHandler/oGUIHandler.yy",},"order":7,},
     {"id":{"name":"oCamera","path":"objects/oCamera/oCamera.yy",},"order":1,},
     {"id":{"name":"oGameHandler","path":"objects/oGameHandler/oGameHandler.yy",},"order":0,},
     {"id":{"name":"oTile","path":"objects/oTile/oTile.yy",},"order":3,},
@@ -55,7 +55,7 @@
     "IDEVersion": "2022.6.1.26",
   },
   "resourceVersion": "1.5",
-  "name": "1.4.1",
+  "name": "TTGOT-Mapper",
   "tags": [],
   "resourceType": "GMProject",
 }

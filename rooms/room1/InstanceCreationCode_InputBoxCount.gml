@@ -1,3 +1,6 @@
 title = "Count";
 isOnlyDigit = true;
-oGameHandler.arCanvas[eCanva.ChangeTiles].arInputBox[eTilesInputBox.count] = self;
+
+parent = oGUIHandler.arCanvas[eCanva.ChangeTiles];
+i = eTilesInputBox.count;
+parent.arInputBox[i] = self;

@@ -1,7 +1,7 @@
 if mouse_check_button_pressed(mb_left) 
 && position_meeting(window_mouse_get_x(), window_mouse_get_y(), self) {
-	var newText		= oGameHandler.arCanvas[eCanva.ChangeTiles].arInputBox[eTilesInputBox.text].str;
-	var newColor	= StringToColor(oGameHandler.arCanvas[eCanva.ChangeTiles].arInputBox[eTilesInputBox.color].str);
+	var newText		= oGUIHandler.arCanvas[eCanva.ChangeTiles].arInputBox[eTilesInputBox.text].str;
+	var newColor	= StringToColor(oGUIHandler.arCanvas[eCanva.ChangeTiles].arInputBox[eTilesInputBox.color].str);
 	
 	ChangeTile(newText, newColor);
 }

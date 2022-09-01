@@ -1,2 +1,5 @@
 title = "Text";
-oGameHandler.arCanvas[eCanva.ChangeTiles].arInputBox[eTilesInputBox.text] = self;
+
+parent = oGUIHandler.arCanvas[eCanva.ChangeTiles];
+i = eTilesInputBox.text;
+parent.arInputBox[i] = self;

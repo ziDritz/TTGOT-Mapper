@@ -1,6 +1,8 @@
 title = "New Grid"
 
-oGameHandler.arCanvas[eCanva.NewGrid] = self;
+parent				= oGUIHandler;
+i					= eCanva.NewGrid;
+parent.arCanvas[i]	= self;
 arInputBox = array_create(2);
 
 enum eGridInputBox {

@@ -20,7 +20,7 @@ if isActive {
 	
 	if keyboard_check_pressed(ord("R")) Reset();
 	
-	if keyboard_check_pressed(ord("W")) Scale(0.8);
+	if keyboard_check_pressed(ord("W")) Scale(1 / 1.2);
 	
 	if keyboard_check_pressed(ord("X")) Scale(1.2);
 	

@@ -1,2 +1,5 @@
-title = "Color"
-oGameHandler.arCanvas[eCanva.ChangeTiles].arInputBox[eTilesInputBox.color] = self;
+title = "Color";
+
+parent = oGUIHandler.arCanvas[eCanva.ChangeTiles];
+i = eTilesInputBox.color;
+parent.arInputBox[i] = self;

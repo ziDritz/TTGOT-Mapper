@@ -21,7 +21,22 @@ if (isActive){
 			str = keyboard_string;
 		}
 	}
+	
+	
+
+	
+	//var input_next = keyboard_check_pressed(vk_tab);
+	//var input_back = keyboard_check_direct(vk_lshift) && keyboard_check_pressed(vk_tab);
+
+	//var navigate = input_next - input_back;
+	//if navigate != 0 {
+	//	iSelector += navigate;
+	//	if selector >= array_length(oGUIHandler.arCanvas) selector = 0;
+	//	if selector <= array_length(oGUIHandler.arCanvas) selector = 0;
 }
+
+
+	
 
 
 
